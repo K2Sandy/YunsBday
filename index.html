@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>A Birthday Surprise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- Link to external CSS -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- ============ LOCK SCREEN ============ -->
+<div id="lockScreen">
+  <div id="lockBgImage"></div>
+  <div class="lock-decor" id="lockDecor"></div>
+  <form class="lock-card" id="lockCard">
+    <div class="lock-icon-wrap" id="lockIconWrap">
+      <svg id="lockIcon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="10" width="16" height="10" rx="2"></rect>
+        <path id="lockShackle" d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+      </svg>
+    </div>
+    <h1 class="script" id="lockTitle">A Surprise Awaits</h1>
+    <p class="subline">Enter the secret word to open your gift</p>
+    <div class="lock-form">
+      <input class="lock-input" id="passwordInput" type="password" placeholder="Type the password" autocomplete="off">
+      <p class="lock-hint" id="lockHint"></p>
+      <button type="submit" class="lock-btn">Unlock My Surprise</button>
+      <p class="lock-error" id="lockError">Not quite — try again!</p>
+    </div>
+  </form>
+</div>
+
+<!-- ============ APP ============ -->
+<div id="app">
+
+  <!-- MINIGAME -->
+  <section id="page-game" class="page">
+    <div class="page-inner game-inner">
+      <span class="eyebrow">Before We Begin</span>
+      <h2 class="script" style="font-size:32px; color:var(--rose-deep); margin-top:8px;">Happy Birthday Yuna<3</h2>
+      <p class="game-hint">Answer 5 quick math questions to unlock your surprises.</p>
+      <p class="game-progress" id="gameProgress">Question 1 of 5</p>
+
+      <div class="math-container" id="mathContainer">
+        <div class="math-question script" id="mathQuestion">7 × 8 = ?</div>
+        <form id="mathForm" class="math-form">
+          <input type="number" id="mathInput" class="math-input" placeholder="Your Answer" autocomplete="off" required>
+          <button type="submit" class="next-btn math-btn">Check</button>
+        </form>
+      </div>
+
+      <div class="game-win" id="gameWin">
+        <p class="script">Perfect score!</p>
+        <button type="button" class="next-btn" id="gameContinueBtn">Continue →</button>
+      </div>
+      <p class="game-skip"><button type="button" id="gameSkipBtn">Having trouble? Skip the game</button></p>
+    </div>
+  </section>
+
+  <!-- HERO -->
+<!-- GSAP INTRO ANIMATION -->
+  <section id="page-intro-anim" class="page">
+    <!-- Balloons for the final transition -->
+    <div class="baloons">
+      <img src="img/ballon1.svg" alt="">
+      <img src="img/ballon2.svg" alt="">
+      <img src="img/ballon3.svg" alt="">
+      <img src="img/ballon1.svg" alt="">
+      <img src="img/ballon2.svg" alt="">
+      <img src="img/ballon3.svg" alt="">
+      <img src="img/ballon1.svg" alt="">
+      <img src="img/ballon2.svg" alt="">
+    </div>
+
+    <div class="page-inner intro-anim-inner">
+      <div class="anim-step step-1">
+        <h1 class="script"><span class="anim-greeting">Hey</span> <span class="anim-name" id="animName"></span></h1>
+        <p class="anim-sub">Wishing You All the Love and Joy Today!</p>
+      </div>
+      <div class="anim-step step-2">
+        <p class="script" style="font-size:42px; color:var(--rose-deep);">It's your birthday!!! :D</p>
+      </div>
+      <div class="anim-step step-3">
+        <div class="fake-chat-box">
+          <p class="hbd-chatbox script">Happy birthday to you!! Yeee! Many many happy bla bla blaaa...</p>
+          <div class="fake-btn">Send</div>
+        </div>
+      </div>
+      <div class="anim-step step-4">
+        <p class="idea-1">I was going to text you a simple wish</p>
+        <p class="idea-2">But simple words cant handle your level of chaos. </p>
+        <p class="idea-3">I realised, I wanted to do something <strong>special</strong>.</p>
+        <p class="idea-4">Because,</p>
+        <p class="idea-5 script">You are Special <span class="smiley">:)</span></p>
+        <p class="idea-6 script"><span>S</span><span>O</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LETTER -->
+  <section id="page-letter" class="page">
+    <div class="page-inner">
+      <span class="eyebrow">A Letter</span>
+      <div class="letter-card" style="margin-top:12px;">
+        <span class="tape t1"></span><span class="tape t2"></span>
+        <h2 id="letterHeading">A little letter for you</h2>
+        <p class="letter-body" id="letterBody"></p>
+        <p class="letter-sign" id="letterSign"></p>
+      </div>
+    </div>
+    <div class="page-nav">
+      <button type="button" class="nav-btn" data-nav="back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"></path></svg>Back</button>
+      <span class="page-count"></span>
+      <button type="button" class="nav-btn" data-nav="next">Next<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"></path></svg></button>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="page-gallery" class="page">
+    <div class="page-inner">
+      <span class="eyebrow">Yuna's Gallery</span>
+      <h2 class="script" style="font-size:28px; color:var(--rose-deep); margin-top:8px;">Little Moments Worth Keeping</h2>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+    <div class="page-nav">
+      <button type="button" class="nav-btn" data-nav="back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"></path></svg>Back</button>
+      <span class="page-count"></span>
+      <button type="button" class="nav-btn" data-nav="next">Next<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"></path></svg></button>
+    </div>
+  </section>
+
+  <!-- VOICES -->
+  <section id="page-voices" class="page">
+    <div class="page-inner">
+      <span class="eyebrow">A Special Message</span>
+      <h2 class="script" style="font-size:28px; color:var(--rose-deep); margin-top:8px;">From Your Best Friend</h2>
+      <div class="voices-list" id="voicesList"></div>
+    </div>
+    <div class="page-nav">
+      <button type="button" class="nav-btn" data-nav="back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"></path></svg>Back</button>
+      <span class="page-count"></span>
+      <button type="button" class="nav-btn" data-nav="next">Next<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"></path></svg></button>
+    </div>
+  </section>
+
+  <!-- MUSIC -->
+  <section id="page-music" class="page">
+    <div class="page-inner">
+      <span class="eyebrow">Yuna's Song</span>
+      <h2 class="script" style="font-size:28px; color:var(--rose-deep); margin-top:8px;">Song that reminds me of you! </h2>
+      <div class="music-card" style="margin-top:16px;">
+        <div class="vinyl"></div>
+        <div class="music-embed" id="musicEmbed">
+          <p class="music-fallback">Add her favorite song's YouTube video ID to the CONFIG block and it'll play right here.</p>
+        </div>
+      </div>
+    </div>
+    <div class="page-nav">
+      <button type="button" class="nav-btn" data-nav="back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"></path></svg>Back</button>
+      <span class="page-count"></span>
+      <button type="button" class="nav-btn" data-nav="next">Next<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"></path></svg></button>
+    </div>
+  </section>
+
+  <!-- REASONS -->
+  <section id="page-reasons" class="page">
+    <div class="page-inner">
+      <span class="eyebrow">Reasons</span>
+      <h2 class="script" style="font-size:28px; color:var(--rose-deep); margin-top:8px;">Tap a Star</h2>
+      <p class="reasons-hint">Every star is a reason. Tap one to flip it over.</p>
+      <div class="reasons-grid" id="reasonsGrid"></div>
+    </div>
+    <div class="page-nav">
+      <button type="button" class="nav-btn" data-nav="back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"></path></svg>Back</button>
+      <span class="page-count"></span>
+      <button type="button" class="nav-btn" data-nav="next">Next<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"></path></svg></button>
+    </div>
+  </section>
+
+  <!-- ITALY -->
+  <section id="page-italy" class="page">
+    <div class="italy-flag-bar"></div>
+    <div class="page-inner">
+      <span class="eyebrow" id="italyEyebrow">A New Adventure</span>
+      <h2 class="script" id="italyHeading" style="font-size:30px; color:var(--rose-deep); margin-top:8px;">Buon Viaggio!</h2>
+      <p class="italy-msg" id="italyMsg"></p>
+      <div class="italy-list" id="italyList"></div>
+    </div>
+    <div class="page-nav">
+      <button type="button" class="nav-btn" data-nav="back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"></path></svg>Back</button>
+      <span class="page-count"></span>
+      <button type="button" class="nav-btn" data-nav="next">Next<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"></path></svg></button>
+    </div>
+  </section>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <!-- Ganti 'nama-lagu.mp3' dengan nama file lagu kamu -->
+<source src="/yun bday/audio/happy-birthday.ogg" type="audio/ogg">
+</audio>
+
+<div class="confetti-layer" id="confettiLayer"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<!-- Link to external JavaScript -->
+<script src="script.js"></script>
+</body>
+</html>
+
+  <!-- WISH -->
+  <section id="page-wish" class="page">
+    <div class="page-inner">
+      <span class="eyebrow">Make a Wish</span>
+      <h2 class="script" style="font-size:28px; color:var(--rose-deep); margin-top:8px;">Make a Wish</h2>
+      <p class="reasons-hint" id="wishPrompt"></p>
+      <div class="cake-wrap" id="cakeWrap" role="button" tabindex="0" aria-label="Blow out the candle">
+        <div class="candle"><div class="flame" id="flame"></div></div>
+        <div class="cake-body"></div>
+      </div>
+      <p class="wish-tap">Tap the candle to blow it out</p>
+      <p class="wish-reveal" id="wishReveal"></p>
+    </div>
+    <div class="page-nav">
+      <button type="button" class="nav-btn" data-nav="back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"></path></svg>Back</button>
+      <span class="page-count"></span>
+      <button type="button" class="nav-btn" data-nav="next">Last one<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"></path></svg></button>
+    </div>
+  </section>
+
+  <!-- FINALE -->
+  <section id="page-finale" class="page">
+    <div class="finale-hearts" id="finaleHearts"></div>
+    <div class="page-inner">
+      <span class="eyebrow">One Last Surprise</span>
+
+      <div class="gift-wrap" id="giftWrap" role="button" tabindex="0" aria-label="Open your gift">
+        <div class="gift-lid" id="giftLid"><div class="gift-bow"></div></div>
+        <div class="gift-box"><div class="gift-ribbon-v"></div></div>
+      </div>
+      <p class="gift-tap" id="giftTap">Tap the gift to open it</p>
+
+      <div class="finale-content" id="finaleContent">
+        <div class="big-reveal" id="bigReveal"></div>
+        <h2 class="script" id="finaleTitle">Happy Birthday!</h2>
+        <p class="final-msg" id="finaleMsg"></p>
+        <p class="letter-sign" id="finaleSign"></p>
+      </div>
+    </div>
+    <div class="page-nav">
+      <button type="button" class="nav-btn" data-nav="back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"></path></svg>Back</button>
+      <span class="page-count"></span>
+      <button type="button" class="nav-btn hidden" data-nav="next">Next<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"></path></svg></button>
+    </div>
+  </section>
+
+</div>
+
+<div class="confetti-layer" id="confettiLayer"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<!-- Link to external JavaScript -->
+<script src="script.js"></script>
+</body>
+</html>
