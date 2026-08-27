@@ -2,7 +2,7 @@
    CONFIG — EDIT EVERYTHING BELOW THIS LINE
    ============================================================ */
 const CONFIG = {
-  password: "confetti",
+  password: "bobo",
   lockHint: "",
   lockBackgroundImage: "",
 
